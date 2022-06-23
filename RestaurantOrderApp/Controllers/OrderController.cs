@@ -33,11 +33,11 @@ namespace RestaurantOrderApp.Controllers
             _context.SaveChanges();
 
             //In addition to the Created status(201), it shows where the resource was created(POSTMAN in Headers > Location of the call)
-            return CreatedAtAction(nameof(RecoverOrderById), new { Id = order.Id }, order);
+            return CreatedAtAction(nameof(GetOrderById), new { Id = order.Id }, order);
         }        
 
         [HttpGet]
-        public IEnumerable<Order> RecoverOrders()
+        public IEnumerable<Order> GetOrders()
         {
             foreach (Order order in _context.orders)
             {
@@ -47,7 +47,7 @@ namespace RestaurantOrderApp.Controllers
         }        
 
         [HttpGet("{id}")]
-        public IActionResult RecoverOrderById(int id)
+        public IActionResult GetOrderById(int id)
         {
             Order order = _context.orders.FirstOrDefault(order => order.Id == id);
 
